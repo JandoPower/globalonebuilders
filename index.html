@@ -4,8 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Global One Builders LLC | Servicios de Construcción Premium</title>
+
+<!-- ✅ FIX 1: Browser tab logo (favicon) -->
+<link rel="icon" type="image/png" href="Logo G1B.png">
+<link rel="apple-touch-icon" href="Logo G1B.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+
+<!-- ✅ FIX 2: EmailJS SDK (free, no backend required) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -43,19 +52,17 @@
   .nav-cta::after { display: none !important; }
   .nav-cta:hover { background: var(--gold-light) !important; }
 
-  /* SOCIAL ICONS in header */
   .header-social { display: flex; align-items: center; gap: 10px; }
   .header-social a { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(212,175,55,0.3); background: rgba(255,255,255,0.04); color: var(--text-dim); text-decoration: none; font-size: 1rem; transition: all 0.2s; }
   .header-social a:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); transform: translateY(-2px); }
   .header-social svg { width: 17px; height: 17px; fill: currentColor; }
 
-  /* LANGUAGE TOGGLE */
   .lang-toggle { display: flex; align-items: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(212,175,55,0.3); border-radius: 20px; overflow: hidden; flex-shrink: 0; }
-  .lang-btn { padding: 5px 12px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border: none; background: transparent; color: var(--text-dim); transition: all 0.2s; font-family: 'Barlow', sans-serif; }
+  .lang-btn { padding: 5px 12px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border: none; background: transparent; color: var(--text-dim); transition: all 0.2s; font-family: 'Barlow', sans-serif; min-height: 36px; }
   .lang-btn.active { background: var(--gold); color: var(--dark); border-radius: 18px; }
   .lang-btn:hover:not(.active) { color: var(--white); }
 
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
   .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); transition: 0.3s; }
 
   /* HERO */
@@ -71,9 +78,9 @@
   .hero h1 em { font-style: normal; color: var(--gold); display: block; }
   .hero-sub { font-size: clamp(1rem, 1.5vw, 1.2rem); color: var(--text-dim); line-height: 1.7; max-width: 580px; margin: 24px 0 40px; font-weight: 300; }
   .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
-  .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--dark); padding: 14px 32px; border-radius: 3px; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: all 0.25s; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--dark); padding: 14px 32px; border-radius: 3px; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: all 0.25s; min-height: 48px; }
   .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,175,55,0.3); }
-  .btn-secondary { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--white); padding: 14px 32px; border-radius: 3px; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); transition: all 0.25s; }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--white); padding: 14px 32px; border-radius: 3px; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); transition: all 0.25s; min-height: 48px; }
   .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
   .hero-stats { position: absolute; bottom: 48px; left: 8%; z-index: 1; display: flex; gap: 48px; }
   .stat { display: flex; flex-direction: column; }
@@ -153,12 +160,13 @@
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .form-group { margin-bottom: 16px; }
   label { display: block; margin-bottom: 7px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); }
-  input, textarea, select { width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 3px; color: var(--white); font-family: 'Barlow', sans-serif; font-size: 0.95rem; transition: border-color 0.2s; outline: none; }
+  input, textarea, select { width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 3px; color: var(--white); font-family: 'Barlow', sans-serif; font-size: 0.95rem; transition: border-color 0.2s; outline: none; -webkit-appearance: none; appearance: none; min-height: 48px; }
   input:focus, textarea:focus, select:focus { border-color: var(--gold); background: rgba(255,255,255,0.06); }
   input::placeholder, textarea::placeholder { color: rgba(204,214,246,0.3); }
-  select option { background: var(--dark2); }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238892b0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
+  select option { background: var(--dark2); color: var(--white); }
   textarea { resize: vertical; min-height: 120px; }
-  .btn-submit { width: 100%; padding: 15px; background: var(--gold); color: var(--dark); font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; border: none; border-radius: 3px; cursor: pointer; transition: all 0.25s; margin-top: 8px; }
+  .btn-submit { width: 100%; padding: 15px; background: var(--gold); color: var(--dark); font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; border: none; border-radius: 3px; cursor: pointer; transition: all 0.25s; margin-top: 8px; min-height: 52px; }
   .btn-submit:hover { background: var(--gold-light); box-shadow: 0 6px 20px rgba(212,175,55,0.3); }
   .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; }
   .form-status { display: none; margin-top: 14px; padding: 12px 16px; border-radius: 3px; font-size: 0.875rem; font-weight: 600; text-align: center; }
@@ -173,7 +181,7 @@
   .footer-brand p { font-size: 0.875rem; color: var(--text-dim); line-height: 1.7; max-width: 300px; }
   .footer-col h5 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
   .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .footer-col ul li a { color: var(--text-dim); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+  .footer-col ul li a { color: var(--text-dim); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; min-height: 36px; display: inline-flex; align-items: center; }
   .footer-col ul li a:hover { color: var(--white); }
   .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
   .footer-bottom p { font-size: 0.8rem; color: var(--text-dim); }
@@ -186,8 +194,8 @@
   /* MOBILE */
   @media (max-width: 900px) {
     nav { display: none; }
-    nav.open { display: flex; flex-direction: column; position: fixed; inset: 80px 0 0 0; background: var(--dark2); padding: 40px 8%; gap: 24px; z-index: 999; }
-    nav.open a { font-size: 1.1rem; }
+    nav.open { display: flex; flex-direction: column; position: fixed; inset: 80px 0 0 0; background: var(--dark2); padding: 40px 8%; gap: 24px; z-index: 999; overflow-y: auto; }
+    nav.open a { font-size: 1.1rem; padding: 8px 0; min-height: 48px; display: flex; align-items: center; }
     .hamburger { display: flex; }
     .hero-stats { gap: 28px; }
     .about-grid { grid-template-columns: 1fr; }
@@ -209,6 +217,10 @@
     .hero-stats { display: none; }
     .services-grid { grid-template-columns: 1fr; }
     .contact-form-wrap { padding: 28px 20px; }
+    .why-card { flex-direction: column; gap: 12px; }
+    .footer-top { grid-template-columns: 1fr; }
+    /* Ensure touch targets are large enough */
+    .btn-primary, .btn-secondary, .btn-submit { font-size: 1rem; }
   }
 
   /* ANIMATIONS */
@@ -466,15 +478,14 @@
         <div class="contact-detail-icon">📞</div>
         <div>
           <strong data-en="Phone" data-es="Teléfono">Teléfono</strong>
-          <span>+1 574-386-8817</span>
+          <a href="tel:+15743868817" style="display:block; color: var(--gold); font-size:0.9rem;">+1 574-386-8817</a>
         </div>
       </div>
-
       <div class="contact-detail">
         <div class="contact-detail-icon">📧</div>
         <div>
           <strong data-en="Email" data-es="Correo Electrónico">Correo Electrónico</strong>
-          <span>edgar@globalonebuilders.us</span>
+          <a href="mailto:edgar@globalonebuilders.us">edgar@globalonebuilders.us</a>
         </div>
       </div>
       <div class="contact-detail">
@@ -497,20 +508,20 @@
       <div class="form-row">
         <div class="form-group">
           <label data-en="First Name" data-es="Nombre">Nombre</label>
-          <input type="text" id="f-fname" placeholder="Juan">
+          <input type="text" id="f-fname" placeholder="Juan" autocomplete="given-name">
         </div>
         <div class="form-group">
           <label data-en="Last Name" data-es="Apellido">Apellido</label>
-          <input type="text" id="f-lname" placeholder="García">
+          <input type="text" id="f-lname" placeholder="García" autocomplete="family-name">
         </div>
       </div>
       <div class="form-group">
         <label data-en="Email Address" data-es="Correo Electrónico">Correo Electrónico</label>
-        <input type="email" id="f-email" placeholder="juan@correo.com">
+        <input type="email" id="f-email" placeholder="juan@correo.com" autocomplete="email" inputmode="email">
       </div>
       <div class="form-group">
         <label data-en="Phone Number" data-es="Número de Teléfono">Número de Teléfono</label>
-        <input type="tel" id="f-phone" placeholder="(574) 000-0000">
+        <input type="tel" id="f-phone" placeholder="(574) 000-0000" autocomplete="tel" inputmode="tel">
       </div>
       <div class="form-group">
         <label data-en="Service Needed" data-es="Servicio Requerido">Servicio Requerido</label>
@@ -547,7 +558,6 @@
         </div>
       </div>
       <p data-en="Comprehensive construction excellence from groundbreak to final walkthrough. Indiana's trusted general contractor for residential and commercial projects." data-es="Excelencia constructiva integral desde los cimientos hasta la entrega final. El contratista general de confianza en Indiana para proyectos residenciales y comerciales.">Excelencia constructiva integral desde los cimientos hasta la entrega final. El contratista general de confianza en Indiana para proyectos residenciales y comerciales.</p>
-
     </div>
     <div class="footer-col">
       <h5 data-en="Services" data-es="Servicios">Servicios</h5>
@@ -626,11 +636,35 @@
 
   document.getElementById('btn-es').classList.add('active');
 
-  // ── FORM SUBMIT ──
-  // Uses Formspree to email edgar@globalonebuilders.us
-  // SETUP: Go to https://formspree.io → sign up free → New Form → set email to edgar@globalonebuilders.us
-  // Then replace YOUR_FORM_ID below with your actual form ID (looks like: xpwzgbnk)
-  const FORMSPREE_ID = 'YOUR_FORM_ID';
+  // ── ✅ FIX 3: EmailJS — Real email sending (no backend needed) ──
+  //
+  // ONE-TIME SETUP (takes ~3 minutes, free):
+  // 1. Go to https://www.emailjs.com and create a free account
+  // 2. Add an Email Service: Dashboard → Email Services → Add New Service
+  //    Choose Gmail (or any provider) → connect edgar@globalonebuilders.us
+  //    Copy the Service ID (e.g. "service_abc123") → paste below as EMAILJS_SERVICE_ID
+  // 3. Create a Template: Dashboard → Email Templates → Create New Template
+  //    Set "To Email" to: edgar@globalonebuilders.us
+  //    Paste this as the template body:
+  //    ---
+  //    New estimate request from {{from_name}}
+  //    Email: {{reply_to}}
+  //    Phone: {{phone}}
+  //    Service: {{service}}
+  //    Details: {{message}}
+  //    ---
+  //    Copy the Template ID (e.g. "template_xyz789") → paste below as EMAILJS_TEMPLATE_ID
+  // 4. Get your Public Key: Dashboard → Account → General → Public Key
+  //    Paste it below as EMAILJS_PUBLIC_KEY
+
+  const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // ← replace this
+  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // ← replace this
+  const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // ← replace this
+
+  // Initialize EmailJS
+  if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  }
 
   document.getElementById('submit-btn').addEventListener('click', async function () {
     const btn = this;
@@ -652,11 +686,11 @@
       return;
     }
 
-    // If Formspree not yet set up, fall back to opening the email client
-    if (FORMSPREE_ID === 'YOUR_FORM_ID') {
-      const subject = encodeURIComponent(`[G1B] New Estimate Request – ${fname} ${lname}`);
+    // EmailJS not yet configured → fall back to mailto
+    if (EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID') {
+      const subject = encodeURIComponent(`[G1B] Nueva Solicitud – ${fname} ${lname}`);
       const body = encodeURIComponent(
-        `Name: ${fname} ${lname}\nEmail: ${email}\nPhone: ${phone}\nService: ${service}\n\nProject Details:\n${details}`
+        `Nombre: ${fname} ${lname}\nCorreo: ${email}\nTeléfono: ${phone}\nServicio: ${service}\n\nDetalles del Proyecto:\n${details}`
       );
       window.location.href = `mailto:edgar@globalonebuilders.us?subject=${subject}&body=${body}`;
       statusEl.className = 'form-status success';
@@ -666,46 +700,43 @@
       return;
     }
 
-    // Send via Formspree
+    // Send via EmailJS
     btn.disabled = true;
     btn.textContent = currentLang === 'es' ? 'Enviando...' : 'Sending...';
     statusEl.className = 'form-status';
     statusEl.textContent = '';
 
-    try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          name: `${fname} ${lname}`,
-          email,
-          phone,
-          service,
-          message: details,
-          _replyto: email,
-          _subject: `[G1B] New Estimate Request – ${fname} ${lname}`
-        })
-      });
+    const templateParams = {
+      from_name: `${fname} ${lname}`,
+      reply_to:  email,
+      phone:     phone || 'No proporcionado',
+      service:   service || 'No especificado',
+      message:   details,
+      to_email:  'edgar@globalonebuilders.us'
+    };
 
-      if (res.ok) {
-        statusEl.className = 'form-status success';
-        statusEl.textContent = currentLang === 'es'
-          ? '✓ ¡Solicitud enviada! Le contactaremos pronto.'
-          : "✓ Request sent! We'll be in touch soon.";
-        ['f-fname','f-lname','f-email','f-phone','f-details'].forEach(id => {
-          document.getElementById(id).value = '';
-        });
-        document.getElementById('f-service').selectedIndex = 0;
-        btn.textContent = currentLang === 'es' ? 'Enviar Solicitud →' : 'Submit Request →';
-        btn.disabled = false;
-      } else {
-        throw new Error('Server error');
-      }
-    } catch {
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+
+      statusEl.className = 'form-status success';
+      statusEl.textContent = currentLang === 'es'
+        ? '✓ ¡Solicitud enviada! Le contactaremos pronto.'
+        : "✓ Request sent! We'll be in touch soon.";
+
+      // Clear form
+      ['f-fname','f-lname','f-email','f-phone','f-details'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+      document.getElementById('f-service').selectedIndex = 0;
+      btn.textContent = currentLang === 'es' ? 'Enviar Solicitud →' : 'Submit Request →';
+      btn.disabled = false;
+
+    } catch (err) {
+      console.error('EmailJS error:', err);
       statusEl.className = 'form-status error';
       statusEl.textContent = currentLang === 'es'
-        ? '⚠ Error al enviar. Por favor llámenos directamente.'
-        : '⚠ Send failed. Please call us directly.';
+        ? '⚠ Error al enviar. Por favor llámenos directamente al +1 574-386-8817.'
+        : '⚠ Send failed. Please call us directly at +1 574-386-8817.';
       btn.textContent = currentLang === 'es' ? 'Enviar Solicitud →' : 'Submit Request →';
       btn.disabled = false;
     }
