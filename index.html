@@ -1,53 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global One Builders | Coming Soon</title>
-    <style>
-        body {
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #1a1a1a;
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
-        }
-        .container {
-            border-left: 5px solid #f39c12; /* Construction Orange */
-            padding: 20px 40px;
-            background: rgba(255, 255, 255, 0.05);
-        }
-        h1 {
-            font-size: 3rem;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        p {
-            font-size: 1.2rem;
-            color: #bdc3c7;
-        }
-        .contact-btn {
-            margin-top: 20px;
-            display: inline-block;
-            padding: 10px 25px;
-            background-color: #f39c12;
-            color: #1a1a1a;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global One Builders LLC | Premium Construction Services</title>
+<style>
+:root {
+--brand-blue: #004a99;
+--brand-gold: #d4af37;
+--brand-dark: #0a192f;
+--light: #f4f7f6;
+}
+
+body { font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; line-height: 1.6; color: #333; background: #fff; }
+
+/* Header & Logo */
+header { background: #fff; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+.logo-area { display: flex; align-items: center; }
+.logo-area img { height: 80px; width: auto; }
+
+/* Hero Section */
+.hero { background: linear-gradient(rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.8)), url('https://unsplash.com') center/cover; color: white; padding: 120px 5%; text-align: center; }
+.hero h1 { font-size: 3.5rem; margin-bottom: 10px; border-bottom: 4px solid var(--brand-gold); display: inline-block; padding-bottom: 10px; }
+.hero p { font-size: 1.4rem; max-width: 800px; margin: 20px auto; opacity: 0.9; }
+
+/* Services Grid */
+.services-container { padding: 80px 5%; background: var(--light); }
+.section-header { text-align: center; margin-bottom: 60px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+
+.service-card { background: white; padding: 35px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s; border-top: 5px solid var(--brand-blue); }
+.service-card:hover { transform: translateY(-10px); border-top-color: var(--brand-gold); }
+.service-card h3 { color: var(--brand-blue); margin-top: 0; font-size: 1.4rem; }
+.service-list { list-style: none; padding: 0; }
+.service-list li { margin-bottom: 8px; padding-left: 20px; position: relative; font-size: 0.95rem; }
+.service-list li::before { content: "→"; position: absolute; left: 0; color: var(--brand-gold); font-weight: bold; }
+
+/* Contact Form */
+.contact-section { padding: 80px 5%; text-align: center; }
+.contact-form { max-width: 600px; margin: 0 auto; text-align: left; }
+.form-group { margin-bottom: 20px; }
+label { display: block; margin-bottom: 5px; font-weight: bold; }
+input, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+
+.btn { background: var(--brand-gold); color: var(--brand-dark); padding: 15px 40px; text-decoration: none; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; transition: 0.3s; display: inline-block; }
+.btn:hover { background: var(--brand-blue); color: white; }
+
+footer { background: var(--brand-dark); color: white; text-align: center; padding: 40px; }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Global One Builders</h1>
-        <p>Building Your Vision. Our new website is under construction.</p>
-        <a href="mailto:info@globalonebuilders.us" class="contact-btn">Contact Us</a>
-    </div>
+
+<header>
+<div class="logo-area">
+<!-- Path updated to your local machine location -->
+<img src="C:/Users/edgar/OneDrive/Desktop/Global One Builders/Logo G1B.PNG" alt="Global One Builders LLC">
+</div>
+<nav>
+<a href="#contact" class="btn" style="padding: 10px 20px;">Request Quote</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1>GLOBAL ONE BUILDERS LLC</h1>
+<p>Comprehensive Construction Excellence from Groundbreak to Final Walkthrough.</p>
+</section>
+
+<div class="services-container">
+<div class="section-header">
+<h2>Our Full-Service Capabilities</h2>
+<p>Expertise in every phase of your project.</p>
+</div>
+
+<div class="grid">
+<div class="service-card">
+<h3>1. Site Preparation</h3>
+<ul class="service-list">
+<li>Clearing & Demolition</li>
+<li>Marking & Grading</li>
+<li>Excavation</li>
+</ul>
+</div>
+
+<div class="service-card">
+<h3>2. Structural Work</h3>
+<ul class="service-list">
+<li>Concrete Work & Slabs</li>
+<li>Brick Masonry</li>
+<li>Wood & Steel Framing</li>
+<li>Welding & Steelwork</li>
+</ul>
+</div>
+
+<div class="service-card">
+<h3>3. Exterior & Roofing</h3>
+<ul class="service-list">
+<li>Siding (Vinyl, Wood, Fiber)</li>
+<li>Shingle, Tile & Metal Roofing</li>
+<li>Window & Door Glazing</li>
+</ul>
+</div>
+
+<div class="service-card">
+<h3>4. Interior Finishing</h3>
+<ul class="service-list">
+<li>Plastering & Drywall</li>
+<li>Professional Painting</li>
+<li>Full Flooring Installation</li>
+<li>Custom Cabinetry</li>
+</ul>
+</div>
+
+<div class="service-card">
+<h3>5. MEP Systems</h3>
+<ul class="service-list">
+<li>Full Electrical Wiring</li>
+<li>Plumbing & Drainage</li>
+<li>HVAC Installation</li>
+</ul>
+</div>
+
+<div class="service-card">
+<h3>6. Final Handover</h3>
+<ul class="service-list">
+<li>Finishing Carpentry</li>
+<li>Fixture & Appliance Install</li>
+<li>Quality Control Inspections</li>
+</ul>
+</div>
+</div>
+</div>
+
+<section id="contact" class="contact-section">
+<h2>Start Your Project</h2>
+<p>Tell us about your needs and we'll get back to you with a professional estimate.</p>
+<br>
+<form class="contact-form">
+<div class="form-group">
+<label>Name</label>
+<input type="text" placeholder="Your Name">
+</div>
+<div class="form-group">
+<label>Email</label>
+<input type="email" placeholder="your@email.com">
+</div>
+<div class="form-group">
+<label>Project Details</label>
+<textarea rows="5" placeholder="Tell us about the services you need..."></textarea>
+</div>
+<button type="button" class="btn">Submit Request</button>
+</form>
+</section>
+
+<footer>
+<p>&copy; 2026 Global One Builders LLC. Licensed & Insured.</p>
+</footer>
+
 </body>
 </html>
