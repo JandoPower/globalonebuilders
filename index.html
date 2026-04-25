@@ -404,7 +404,9 @@
   }
   document.getElementById('btn-es').classList.add('active');
 
-  // ── FORM → send_mail.php ──
+  // ── FORM → Web3Forms (no PHP needed) ──────────────────────────────────────
+  const WEB3FORMS_KEY = '9b6334a7-142a-468b-9ee2-ef2b8d31bcaf';
+
   document.getElementById('submit-btn').addEventListener('click', async function () {
     const btn = this;
     const statusEl = document.getElementById('form-status');
@@ -429,19 +431,31 @@
     statusEl.textContent = '';
 
     try {
-      const res = await fetch('send_mail.php', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fname, lname, email, phone, service, message: details })
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: 'New Estimate Request from ' + fname + ' ' + lname,
+          from_name: 'Global One Builders Website',
+          name: fname + ' ' + lname,
+          email: email,
+          phone: phone || '(not provided)',
+          service: service || '(not selected)',
+          message: details,
+          botcheck: ''
+        })
       });
       const data = await res.json();
-      if (res.ok && data.ok) {
+      if (data.success) {
         statusEl.className = 'form-status success';
-        statusEl.textContent = currentLang === 'es' ? '✓ ¡Solicitud enviada! Le contactaremos pronto.' : "✓ Request sent! We'll be in touch soon.";
+        statusEl.textContent = currentLang === 'es'
+          ? '✓ ¡Solicitud enviada! Le contactaremos pronto.'
+          : "✓ Request sent! We'll be in touch soon.";
         ['f-fname','f-lname','f-email','f-phone','f-details'].forEach(id => { document.getElementById(id).value = ''; });
         document.getElementById('f-service').selectedIndex = 0;
       } else {
-        throw new Error(data.msg || 'Server error');
+        throw new Error(data.message || 'Submission failed');
       }
     } catch (err) {
       console.error(err);
