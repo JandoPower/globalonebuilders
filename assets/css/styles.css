@@ -46,11 +46,15 @@ header.scrolled { height: 72px; box-shadow: 0 4px 30px rgba(0,0,0,0.5); }
 
 .logo-wrap { display: flex; align-items: center; gap: 16px; }
 .logo-wrap img {
-  height: 72px;
+  height: 60px;
   width: auto;
+  background: var(--white);
+  padding: 6px 10px;
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
   transition: height 0.3s;
 }
-header.scrolled .logo-wrap img { height: 58px; }
+header.scrolled .logo-wrap img { height: 48px; }
 
 .logo-text { display: flex; flex-direction: column; line-height: 1; }
 .logo-text span:first-child {
@@ -667,7 +671,11 @@ footer {
 }
 .footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
 .footer-logo img {
-  height: 64px;
+  height: 56px;
+  background: var(--white);
+  padding: 5px 9px;
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 .footer-brand p {
   font-size: 0.875rem;
@@ -777,6 +785,6 @@ footer {
   .contact-form-wrap { padding: 28px 20px; }
   .why-card { flex-direction: column; gap: 12px; }
   .btn-primary, .btn-secondary, .btn-submit { font-size: 1rem; }
-  .logo-wrap img { height: 60px; }
-  header.scrolled .logo-wrap img { height: 50px; }
+  .logo-wrap img { height: 52px; }
+  header.scrolled .logo-wrap img { height: 44px; }
 }
