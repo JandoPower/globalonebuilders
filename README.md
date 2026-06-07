@@ -18,7 +18,7 @@ globalonebuilders/
     ├── js/
     │   └── main.js         ← Site script (nav, language toggle, contact form)
     └── images/
-        ├── logo.png        ← Brand logo, transparent PNG (used in header, footer, favicon)
+        ├── logo.jpg        ← Brand logo (used in header, footer, favicon)
         ├── hero-bg.jpg     ← Hero section background
         └── about.jpg       ← "About Us" section image
 ```
@@ -32,7 +32,7 @@ globalonebuilders/
 | Text on the page (services, headlines, contact info) | `index.html` |
 | Colors, fonts, spacing, layout | `assets/css/styles.css` |
 | Language toggle, animations, form behavior | `assets/js/main.js` |
-| The logo | Replace `assets/images/logo.png` |
+| The logo | Replace `assets/images/logo.jpg` |
 | Hero background photo | Replace `assets/images/hero-bg.jpg` |
 | About-section photo | Replace `assets/images/about.jpg` |
 | Domain (e.g. moving off `globalonebuilders.us`) | `CNAME` |
