@@ -1,204 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Global One Builders LLC | Servicios de Construcción Premium</title>
-<link rel="icon" type="image/png" href="Logo G1B.png">
-<link rel="apple-touch-icon" href="Logo G1B.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --blue: #004a99; --blue-dark: #003070; --blue-light: #1565c0;
-    --gold: #d4af37; --gold-light: #f0cf6a;
-    --dark: #060f1e; --dark2: #0a1929; --mid: #112240;
-    --text: #ccd6f6; --text-dim: #8892b0; --white: #ffffff;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Barlow', sans-serif; background: var(--dark); color: var(--text); overflow-x: hidden; }
-  header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 88px; background: rgba(6,15,30,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(212,175,55,0.15); transition: all 0.3s; }
-  header.scrolled { height: 72px; box-shadow: 0 4px 30px rgba(0,0,0,0.5); }
-  .logo-wrap { display: flex; align-items: center; gap: 16px; }
-  .logo-wrap img { height: 72px; width: auto; transition: height 0.3s; mix-blend-mode: screen; filter: brightness(1.3) drop-shadow(0 0 8px rgba(212,175,55,0.35)); }
-  header.scrolled .logo-wrap img { height: 58px; }
-  .logo-text { display: flex; flex-direction: column; line-height: 1; }
-  .logo-text span:first-child { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--white); letter-spacing: 0.08em; text-transform: uppercase; }
-  .logo-text span:last-child { font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 0.7rem; color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase; }
-  .header-right { display: flex; align-items: center; gap: 20px; }
-  nav { display: flex; align-items: center; gap: 32px; }
-  nav a { color: var(--text-dim); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; position: relative; }
-  nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--gold); transform: scaleX(0); transition: transform 0.3s; }
-  nav a:hover { color: var(--white); }
-  nav a:hover::after { transform: scaleX(1); }
-  .nav-cta { background: var(--gold); color: var(--dark) !important; padding: 9px 22px; border-radius: 3px; font-weight: 700 !important; letter-spacing: 0.08em !important; }
-  .nav-cta::after { display: none !important; }
-  .nav-cta:hover { background: var(--gold-light) !important; }
-  .header-social { display: flex; align-items: center; gap: 10px; }
-  .header-social a { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(212,175,55,0.3); background: rgba(255,255,255,0.04); color: var(--text-dim); text-decoration: none; transition: all 0.2s; }
-  .header-social a:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); transform: translateY(-2px); }
-  .header-social svg { width: 17px; height: 17px; fill: currentColor; }
-  .lang-toggle { display: flex; align-items: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(212,175,55,0.3); border-radius: 20px; overflow: hidden; flex-shrink: 0; }
-  .lang-btn { padding: 5px 12px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border: none; background: transparent; color: var(--text-dim); transition: all 0.2s; font-family: 'Barlow', sans-serif; min-height: 36px; }
-  .lang-btn.active { background: var(--gold); color: var(--dark); border-radius: 18px; }
-  .lang-btn:hover:not(.active) { color: var(--white); }
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
-  .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); transition: 0.3s; }
-  .hero { height: 100vh; min-height: 680px; display: flex; align-items: center; position: relative; overflow: hidden; }
-  .hero-bg { position: absolute; inset: 0; z-index: 0; background: linear-gradient(135deg, rgba(6,15,30,0.97) 0%, rgba(0,48,112,0.7) 60%, rgba(6,15,30,0.9) 100%), url('hero-bg.jpg') center/cover no-repeat; background-color: #0a1929; }
-  .hero-bg::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(212,175,55,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.04) 1px, transparent 1px); background-size: 60px 60px; }
-  .hero-content { position: relative; z-index: 1; padding: 0 8%; max-width: 900px; }
-  .hero-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
-  .hero-eyebrow span { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); }
-  .hero-eyebrow::before { content: ''; flex: 0 0 20px; height: 1px; background: var(--gold); opacity: 0.6; }
-  .hero-eyebrow::after { content: ''; flex: 0 0 40px; height: 1px; background: var(--gold); opacity: 0.6; }
-  .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(3rem, 7vw, 6rem); line-height: 0.95; color: var(--white); margin-bottom: 10px; text-transform: uppercase; }
-  .hero h1 em { font-style: normal; color: var(--gold); display: block; }
-  .hero-sub { font-size: clamp(1rem, 1.5vw, 1.2rem); color: var(--text-dim); line-height: 1.7; max-width: 580px; margin: 24px 0 40px; font-weight: 300; }
-  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
-  .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--dark); padding: 14px 32px; border-radius: 3px; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: all 0.25s; min-height: 48px; }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,175,55,0.3); }
-  .btn-secondary { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--white); padding: 14px 32px; border-radius: 3px; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); transition: all 0.25s; min-height: 48px; }
-  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
-  .hero-stats { position: absolute; bottom: 48px; left: 8%; z-index: 1; display: flex; gap: 48px; }
-  .stat { display: flex; flex-direction: column; }
-  .stat-num { font-family: 'Barlow Condensed', sans-serif; font-size: 2.4rem; font-weight: 800; color: var(--gold); line-height: 1; }
-  .stat-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin-top: 4px; }
-  section { padding: 100px 8%; }
-  .section-label { display: flex; align-items: center; gap: 12px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-  .section-label::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
-  h2.section-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 800; text-transform: uppercase; line-height: 1; color: var(--white); margin-bottom: 20px; }
-  h2.section-title em { font-style: normal; color: var(--gold); }
-  .section-desc { font-size: 1rem; color: var(--text-dim); max-width: 560px; line-height: 1.8; font-weight: 300; }
-  .about { background: var(--dark2); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-  .about-visual { position: relative; }
-  .about-img-frame { width: 100%; aspect-ratio: 4/3; background: url('about-img.jpg') center/cover; background-color: #112240; border-radius: 4px; position: relative; }
-  .about-img-frame::before { content: ''; position: absolute; top: -16px; left: -16px; right: 16px; bottom: 16px; border: 1px solid rgba(212,175,55,0.3); border-radius: 4px; z-index: -1; }
-  .about-badge { position: absolute; bottom: -24px; right: -24px; background: var(--gold); color: var(--dark); padding: 20px 24px; border-radius: 4px; font-family: 'Barlow Condensed', sans-serif; text-align: center; }
-  .about-badge strong { display: block; font-size: 2.2rem; font-weight: 800; line-height: 1; }
-  .about-badge span { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; }
-  .about-points { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
-  .about-point { display: flex; gap: 14px; align-items: flex-start; padding: 16px 20px; background: rgba(255,255,255,0.03); border-left: 3px solid var(--gold); border-radius: 0 4px 4px 0; }
-  .about-point-icon { color: var(--gold); font-size: 1.2rem; margin-top: 2px; flex-shrink: 0; }
-  .about-point-text strong { display: block; color: var(--white); font-size: 0.95rem; margin-bottom: 3px; }
-  .about-point-text span { color: var(--text-dim); font-size: 0.875rem; line-height: 1.5; }
-  .services { background: var(--dark); }
-  .services-intro { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; flex-wrap: wrap; gap: 24px; }
-  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.1); border-radius: 6px; overflow: hidden; }
-  .service-card { background: var(--dark2); padding: 40px 32px; position: relative; transition: background 0.3s; cursor: default; }
-  .service-card:hover { background: var(--mid); }
-  .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
-  .service-card:hover::before { transform: scaleX(1); }
-  .service-num { font-family: 'Barlow Condensed', sans-serif; font-size: 3.5rem; font-weight: 800; color: rgba(212,175,55,0.1); line-height: 1; margin-bottom: 12px; transition: color 0.3s; }
-  .service-card:hover .service-num { color: rgba(212,175,55,0.2); }
-  .service-card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--white); margin-bottom: 20px; }
-  .service-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-  .service-list li { font-size: 0.875rem; color: var(--text-dim); display: flex; align-items: center; gap: 10px; line-height: 1.4; }
-  .service-list li::before { content: ''; width: 4px; height: 4px; flex-shrink: 0; background: var(--gold); border-radius: 50%; }
-  .process { background: var(--dark2); }
-  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; margin-top: 60px; }
-  .process-steps::before { content: ''; position: absolute; top: 32px; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), var(--gold), transparent); opacity: 0.3; }
-  .process-step { padding: 0 20px; text-align: center; }
-  .step-circle { width: 64px; height: 64px; border-radius: 50%; border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--gold); background: var(--dark2); position: relative; z-index: 1; transition: all 0.3s; }
-  .process-step:hover .step-circle { background: var(--gold); color: var(--dark); box-shadow: 0 0 24px rgba(212,175,55,0.4); }
-  .process-step h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--white); margin-bottom: 10px; }
-  .process-step p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.6; }
-  .why { background: var(--mid); }
-  .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 60px; }
-  .why-card { padding: 36px 32px; background: rgba(0,0,0,0.3); border: 1px solid rgba(212,175,55,0.12); border-radius: 4px; transition: border-color 0.3s, transform 0.3s; display: flex; gap: 20px; }
-  .why-card:hover { border-color: rgba(212,175,55,0.4); transform: translateY(-4px); }
-  .why-icon { font-size: 2rem; flex-shrink: 0; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; background: rgba(212,175,55,0.1); border-radius: 4px; }
-  .why-card h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; color: var(--white); margin-bottom: 8px; }
-  .why-card p { font-size: 0.875rem; color: var(--text-dim); line-height: 1.7; }
-  .contact { background: var(--dark); }
-  .contact-wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
-  .contact-info { padding-top: 8px; }
-  .contact-detail { display: flex; gap: 16px; align-items: flex-start; margin-top: 28px; padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,0.06); }
-  .contact-detail:last-of-type { border-bottom: none; }
-  .contact-detail-icon { width: 44px; height: 44px; flex-shrink: 0; background: rgba(212,175,55,0.1); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
-  .contact-detail strong { display: block; color: var(--white); font-size: 0.85rem; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.08em; }
-  .contact-detail span { color: var(--text-dim); font-size: 0.9rem; }
-  .contact-detail a { color: var(--gold); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-  .contact-detail a:hover { color: var(--gold-light); }
-  .contact-form-wrap { background: var(--dark2); border: 1px solid rgba(212,175,55,0.1); border-radius: 6px; padding: 48px; }
-  .contact-form-wrap h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 700; text-transform: uppercase; color: var(--white); margin-bottom: 32px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .form-group { margin-bottom: 16px; }
-  label { display: block; margin-bottom: 7px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); }
-  input, textarea, select { width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 3px; color: var(--white); font-family: 'Barlow', sans-serif; font-size: 0.95rem; transition: border-color 0.2s; outline: none; -webkit-appearance: none; appearance: none; min-height: 48px; }
-  input:focus, textarea:focus, select:focus { border-color: var(--gold); background: rgba(255,255,255,0.06); }
-  input::placeholder, textarea::placeholder { color: rgba(204,214,246,0.3); }
-  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238892b0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
-  select option { background: var(--dark2); color: var(--white); }
-  textarea { resize: vertical; min-height: 120px; }
-  .btn-submit { width: 100%; padding: 15px; background: var(--gold); color: var(--dark); font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; border: none; border-radius: 3px; cursor: pointer; transition: all 0.25s; margin-top: 8px; min-height: 52px; }
-  .btn-submit:hover { background: var(--gold-light); box-shadow: 0 6px 20px rgba(212,175,55,0.3); }
-  .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; }
-  .form-status { display: none; margin-top: 14px; padding: 12px 16px; border-radius: 3px; font-size: 0.875rem; font-weight: 600; text-align: center; }
-  .form-status.success { display: block; background: rgba(46,204,113,0.15); border: 1px solid rgba(46,204,113,0.4); color: #2ecc71; }
-  .form-status.error { display: block; background: rgba(231,76,60,0.15); border: 1px solid rgba(231,76,60,0.4); color: #e74c3c; }
-  footer { background: var(--dark2); border-top: 1px solid rgba(212,175,55,0.15); padding: 60px 8% 32px; }
-  .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 48px; }
-  .footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-  .footer-logo img { height: 52px; mix-blend-mode: screen; filter: brightness(1.3) drop-shadow(0 0 6px rgba(212,175,55,0.3)); }
-  .footer-brand p { font-size: 0.875rem; color: var(--text-dim); line-height: 1.7; max-width: 300px; }
-  .footer-col h5 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
-  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .footer-col ul li a { color: var(--text-dim); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; min-height: 36px; display: inline-flex; align-items: center; }
-  .footer-col ul li a:hover { color: var(--white); }
-  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-  .footer-bottom p { font-size: 0.8rem; color: var(--text-dim); }
-  .footer-badge { display: flex; align-items: center; gap: 8px; background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.2); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: var(--gold); font-weight: 600; }
-  @media (max-width: 900px) {
-    nav { display: none; }
-    nav.open { display: flex; flex-direction: column; position: fixed; inset: 80px 0 0 0; background: var(--dark2); padding: 40px 8%; gap: 24px; z-index: 999; overflow-y: auto; }
-    nav.open a { font-size: 1.1rem; padding: 8px 0; min-height: 48px; display: flex; align-items: center; }
-    .hamburger { display: flex; }
-    .hero-stats { gap: 28px; }
-    .about-grid { grid-template-columns: 1fr; }
-    .about-badge { bottom: -16px; right: 0; }
-    .services-grid { grid-template-columns: 1fr 1fr; }
-    .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
-    .process-steps::before { display: none; }
-    .why-grid { grid-template-columns: 1fr; }
-    .contact-wrap { grid-template-columns: 1fr; }
-    .footer-top { grid-template-columns: 1fr; gap: 36px; }
-    .form-row { grid-template-columns: 1fr; }
-    .lang-toggle { margin-right: 4px; }
-    .header-social { display: none; }
-  }
-  @media (max-width: 600px) {
-    section { padding: 72px 6%; }
-    header { padding: 0 4%; }
-    .hero-content { padding: 0 6%; }
-    .hero-stats { display: none; }
-    .services-grid { grid-template-columns: 1fr; }
-    .contact-form-wrap { padding: 28px 20px; }
-    .why-card { flex-direction: column; gap: 12px; }
-    .btn-primary, .btn-secondary, .btn-submit { font-size: 1rem; }
-  }
-  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s, transform 0.7s; }
-  .fade-up.visible { opacity: 1; transform: none; }
-  .stagger > * { opacity: 0; transform: translateY(24px); transition: opacity 0.5s, transform 0.5s; }
-  .stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:0s; }
-  .stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.1s; }
-  .stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.2s; }
-  .stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.3s; }
-  .stagger.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay:0.4s; }
-  .stagger.visible > *:nth-child(6) { opacity:1; transform:none; transition-delay:0.5s; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global One Builders LLC | Servicios de Construcción Premium</title>
+
+  <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
+  <link rel="apple-touch-icon" href="assets/images/logo.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
+
+<!-- ============================================================
+     Header
+     ============================================================ -->
 <header id="site-header">
   <div class="logo-wrap">
-    <img src="Logo G1B.png" alt="Global One Builders LLC">
+    <img src="assets/images/logo.jpg" alt="Global One Builders LLC">
     <div class="logo-text">
       <span>Global One Builders</span>
       <span data-en="Licensed &amp; Insured" data-es="Licenciado y Asegurado">Licenciado y Asegurado</span>
     </div>
   </div>
+
   <div class="header-right">
     <div class="header-social">
       <a href="https://www.facebook.com/share/1B87TMSxet/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook">
@@ -208,40 +37,51 @@
         <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
       </a>
     </div>
+
     <nav id="main-nav">
-      <a href="#about" data-en="About" data-es="Nosotros">Nosotros</a>
-      <a href="#services" data-en="Services" data-es="Servicios">Servicios</a>
-      <a href="#process" data-en="Process" data-es="Proceso">Proceso</a>
-      <a href="#contact" class="nav-cta" data-en="Get a Quote" data-es="Obtener Presupuesto">Obtener Presupuesto</a>
+      <a href="#about"    data-en="About"        data-es="Nosotros">Nosotros</a>
+      <a href="#services" data-en="Services"     data-es="Servicios">Servicios</a>
+      <a href="#process"  data-en="Process"      data-es="Proceso">Proceso</a>
+      <a href="#contact"  class="nav-cta" data-en="Get a Quote" data-es="Obtener Presupuesto">Obtener Presupuesto</a>
     </nav>
+
     <div class="lang-toggle">
       <button class="lang-btn" id="btn-es" onclick="setLang('es')">ESP</button>
       <button class="lang-btn" id="btn-en" onclick="setLang('en')">ENG</button>
     </div>
+
     <div class="hamburger" id="hamburger" onclick="toggleNav()">
       <span></span><span></span><span></span>
     </div>
   </div>
 </header>
 
+<!-- ============================================================
+     Hero
+     ============================================================ -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow"><span data-en="Indiana's Premier General Contractor" data-es="Contratista General Premier de Indiana">Contratista General Premier de Indiana</span></div>
+    <div class="hero-eyebrow">
+      <span data-en="Indiana's Premier General Contractor" data-es="Contratista General Premier de Indiana">Contratista General Premier de Indiana</span>
+    </div>
     <h1 data-en="Build With <em>Confidence.</em>" data-es="Construye Con <em>Confianza.</em>">Construye Con <em>Confianza.</em></h1>
     <p class="hero-sub" data-en="From site preparation to final walkthrough — Global One Builders delivers comprehensive construction excellence with precision, quality, and integrity on every project." data-es="Desde la preparación del terreno hasta la entrega final — Global One Builders ofrece excelencia constructiva integral con precisión, calidad e integridad en cada proyecto.">Desde la preparación del terreno hasta la entrega final — Global One Builders ofrece excelencia constructiva integral con precisión, calidad e integridad en cada proyecto.</p>
     <div class="hero-btns">
-      <a href="#contact" class="btn-primary" data-en="Request a Free Quote" data-es="Solicitar Presupuesto Gratis">Solicitar Presupuesto Gratis</a>
-      <a href="#services" class="btn-secondary" data-en="View Services" data-es="Ver Servicios">Ver Servicios</a>
+      <a href="#contact"  class="btn-primary"   data-en="Request a Free Quote" data-es="Solicitar Presupuesto Gratis">Solicitar Presupuesto Gratis</a>
+      <a href="#services" class="btn-secondary" data-en="View Services"        data-es="Ver Servicios">Ver Servicios</a>
     </div>
   </div>
   <div class="hero-stats">
-    <div class="stat"><span class="stat-num">15+</span><span class="stat-label" data-en="Years Experience" data-es="Años de Experiencia">Años de Experiencia</span></div>
+    <div class="stat"><span class="stat-num">15+</span> <span class="stat-label" data-en="Years Experience"   data-es="Años de Experiencia">Años de Experiencia</span></div>
     <div class="stat"><span class="stat-num">200+</span><span class="stat-label" data-en="Projects Completed" data-es="Proyectos Completados">Proyectos Completados</span></div>
-    <div class="stat"><span class="stat-num">6</span><span class="stat-label" data-en="Core Disciplines" data-es="Áreas de Especialización">Áreas de Especialización</span></div>
+    <div class="stat"><span class="stat-num">6</span>   <span class="stat-label" data-en="Core Disciplines"   data-es="Áreas de Especialización">Áreas de Especialización</span></div>
   </div>
 </section>
 
+<!-- ============================================================
+     About
+     ============================================================ -->
 <section class="about" id="about">
   <div class="about-grid">
     <div class="about-visual fade-up">
@@ -261,6 +101,9 @@
   </div>
 </section>
 
+<!-- ============================================================
+     Services
+     ============================================================ -->
 <section class="services" id="services">
   <div class="services-intro fade-up">
     <div>
@@ -269,16 +112,75 @@
     </div>
     <p class="section-desc" data-en="Every phase of your project, handled by one trusted team." data-es="Cada fase de su proyecto, manejada por un equipo de confianza.">Cada fase de su proyecto, manejada por un equipo de confianza.</p>
   </div>
+
   <div class="services-grid stagger">
-    <div class="service-card"><div class="service-num">01</div><h3 data-en="Site Preparation" data-es="Preparación del Terreno">Preparación del Terreno</h3><ul class="service-list"><li data-en="Clearing &amp; Demolition" data-es="Limpieza y Demolición">Limpieza y Demolición</li><li data-en="Marking &amp; Grading" data-es="Marcación y Nivelación">Marcación y Nivelación</li><li data-en="Excavation" data-es="Excavación">Excavación</li></ul></div>
-    <div class="service-card"><div class="service-num">02</div><h3 data-en="Structural Work" data-es="Trabajo Estructural">Trabajo Estructural</h3><ul class="service-list"><li data-en="Concrete Work &amp; Slabs" data-es="Trabajo en Concreto y Losas">Trabajo en Concreto y Losas</li><li data-en="Brick Masonry" data-es="Mampostería de Ladrillo">Mampostería de Ladrillo</li><li data-en="Wood &amp; Steel Framing" data-es="Estructura de Madera y Acero">Estructura de Madera y Acero</li><li data-en="Welding &amp; Steelwork" data-es="Soldadura y Trabajos en Acero">Soldadura y Trabajos en Acero</li></ul></div>
-    <div class="service-card"><div class="service-num">03</div><h3 data-en="Exterior &amp; Roofing" data-es="Exterior y Techos">Exterior y Techos</h3><ul class="service-list"><li data-en="Siding (Vinyl, Wood, Fiber)" data-es="Revestimiento (Vinilo, Madera, Fibra)">Revestimiento (Vinilo, Madera, Fibra)</li><li data-en="Shingle, Tile &amp; Metal Roofing" data-es="Techos de Tejas, Cerámica y Metal">Techos de Tejas, Cerámica y Metal</li><li data-en="Window &amp; Door Glazing" data-es="Acristalamiento de Ventanas y Puertas">Acristalamiento de Ventanas y Puertas</li></ul></div>
-    <div class="service-card"><div class="service-num">04</div><h3 data-en="Interior Finishing" data-es="Acabados Interiores">Acabados Interiores</h3><ul class="service-list"><li data-en="Plastering &amp; Drywall" data-es="Yeso y Drywall">Yeso y Drywall</li><li data-en="Professional Painting" data-es="Pintura Profesional">Pintura Profesional</li><li data-en="Full Flooring Installation" data-es="Instalación de Pisos Completa">Instalación de Pisos Completa</li><li data-en="Custom Cabinetry" data-es="Gabinetes a Medida">Gabinetes a Medida</li></ul></div>
-    <div class="service-card"><div class="service-num">05</div><h3 data-en="MEP Systems" data-es="Sistemas MEP">Sistemas MEP</h3><ul class="service-list"><li data-en="Full Electrical Wiring" data-es="Cableado Eléctrico Completo">Cableado Eléctrico Completo</li><li data-en="Plumbing &amp; Drainage" data-es="Plomería y Drenaje">Plomería y Drenaje</li><li data-en="HVAC Installation" data-es="Instalación de HVAC">Instalación de HVAC</li></ul></div>
-    <div class="service-card"><div class="service-num">06</div><h3 data-en="Final Handover" data-es="Entrega Final">Entrega Final</h3><ul class="service-list"><li data-en="Finishing Carpentry" data-es="Carpintería de Acabado">Carpintería de Acabado</li><li data-en="Fixture &amp; Appliance Install" data-es="Instalación de Accesorios y Electrodomésticos">Instalación de Accesorios y Electrodomésticos</li><li data-en="Quality Control Inspections" data-es="Inspecciones de Control de Calidad">Inspecciones de Control de Calidad</li></ul></div>
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <h3 data-en="Site Preparation" data-es="Preparación del Terreno">Preparación del Terreno</h3>
+      <ul class="service-list">
+        <li data-en="Clearing &amp; Demolition" data-es="Limpieza y Demolición">Limpieza y Demolición</li>
+        <li data-en="Marking &amp; Grading"     data-es="Marcación y Nivelación">Marcación y Nivelación</li>
+        <li data-en="Excavation"               data-es="Excavación">Excavación</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <h3 data-en="Structural Work" data-es="Trabajo Estructural">Trabajo Estructural</h3>
+      <ul class="service-list">
+        <li data-en="Concrete Work &amp; Slabs"   data-es="Trabajo en Concreto y Losas">Trabajo en Concreto y Losas</li>
+        <li data-en="Brick Masonry"              data-es="Mampostería de Ladrillo">Mampostería de Ladrillo</li>
+        <li data-en="Wood &amp; Steel Framing"   data-es="Estructura de Madera y Acero">Estructura de Madera y Acero</li>
+        <li data-en="Welding &amp; Steelwork"    data-es="Soldadura y Trabajos en Acero">Soldadura y Trabajos en Acero</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <h3 data-en="Exterior &amp; Roofing" data-es="Exterior y Techos">Exterior y Techos</h3>
+      <ul class="service-list">
+        <li data-en="Siding (Vinyl, Wood, Fiber)"        data-es="Revestimiento (Vinilo, Madera, Fibra)">Revestimiento (Vinilo, Madera, Fibra)</li>
+        <li data-en="Shingle, Tile &amp; Metal Roofing"  data-es="Techos de Tejas, Cerámica y Metal">Techos de Tejas, Cerámica y Metal</li>
+        <li data-en="Window &amp; Door Glazing"          data-es="Acristalamiento de Ventanas y Puertas">Acristalamiento de Ventanas y Puertas</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <h3 data-en="Interior Finishing" data-es="Acabados Interiores">Acabados Interiores</h3>
+      <ul class="service-list">
+        <li data-en="Plastering &amp; Drywall"      data-es="Yeso y Drywall">Yeso y Drywall</li>
+        <li data-en="Professional Painting"         data-es="Pintura Profesional">Pintura Profesional</li>
+        <li data-en="Full Flooring Installation"    data-es="Instalación de Pisos Completa">Instalación de Pisos Completa</li>
+        <li data-en="Custom Cabinetry"              data-es="Gabinetes a Medida">Gabinetes a Medida</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <h3 data-en="MEP Systems" data-es="Sistemas MEP">Sistemas MEP</h3>
+      <ul class="service-list">
+        <li data-en="Full Electrical Wiring"  data-es="Cableado Eléctrico Completo">Cableado Eléctrico Completo</li>
+        <li data-en="Plumbing &amp; Drainage" data-es="Plomería y Drenaje">Plomería y Drenaje</li>
+        <li data-en="HVAC Installation"       data-es="Instalación de HVAC">Instalación de HVAC</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <h3 data-en="Final Handover" data-es="Entrega Final">Entrega Final</h3>
+      <ul class="service-list">
+        <li data-en="Finishing Carpentry"              data-es="Carpintería de Acabado">Carpintería de Acabado</li>
+        <li data-en="Fixture &amp; Appliance Install"  data-es="Instalación de Accesorios y Electrodomésticos">Instalación de Accesorios y Electrodomésticos</li>
+        <li data-en="Quality Control Inspections"      data-es="Inspecciones de Control de Calidad">Inspecciones de Control de Calidad</li>
+      </ul>
+    </div>
   </div>
 </section>
 
+<!-- ============================================================
+     Process
+     ============================================================ -->
 <section class="process" id="process">
   <div class="fade-up" style="text-align:center;">
     <div class="section-label" style="justify-content:center;" data-en="How It Works" data-es="Cómo Funciona">Cómo Funciona</div>
@@ -287,12 +189,15 @@
   </div>
   <div class="process-steps stagger">
     <div class="process-step"><div class="step-circle">01</div><h4 data-en="Consultation" data-es="Consulta">Consulta</h4><p data-en="We meet to understand your goals, timeline, and budget with no obligation." data-es="Nos reunimos para entender sus metas, cronograma y presupuesto sin ningún compromiso.">Nos reunimos para entender sus metas, cronograma y presupuesto sin ningún compromiso.</p></div>
-    <div class="process-step"><div class="step-circle">02</div><h4 data-en="Estimate" data-es="Presupuesto">Presupuesto</h4><p data-en="You receive a detailed, itemized proposal with no hidden fees." data-es="Recibe una propuesta detallada y desglosada sin tarifas ocultas.">Recibe una propuesta detallada y desglosada sin tarifas ocultas.</p></div>
-    <div class="process-step"><div class="step-circle">03</div><h4 data-en="Build" data-es="Construcción">Construcción</h4><p data-en="Our crews execute with precision while you stay updated at every stage." data-es="Nuestros equipos ejecutan con precisión mientras usted se mantiene informado en cada etapa.">Nuestros equipos ejecutan con precisión mientras usted se mantiene informado en cada etapa.</p></div>
-    <div class="process-step"><div class="step-circle">04</div><h4 data-en="Handover" data-es="Entrega">Entrega</h4><p data-en="Final walkthrough, quality sign-off, and your complete project delivered." data-es="Recorrido final, aprobación de calidad y entrega completa de su proyecto.">Recorrido final, aprobación de calidad y entrega completa de su proyecto.</p></div>
+    <div class="process-step"><div class="step-circle">02</div><h4 data-en="Estimate"     data-es="Presupuesto">Presupuesto</h4><p data-en="You receive a detailed, itemized proposal with no hidden fees." data-es="Recibe una propuesta detallada y desglosada sin tarifas ocultas.">Recibe una propuesta detallada y desglosada sin tarifas ocultas.</p></div>
+    <div class="process-step"><div class="step-circle">03</div><h4 data-en="Build"        data-es="Construcción">Construcción</h4><p data-en="Our crews execute with precision while you stay updated at every stage." data-es="Nuestros equipos ejecutan con precisión mientras usted se mantiene informado en cada etapa.">Nuestros equipos ejecutan con precisión mientras usted se mantiene informado en cada etapa.</p></div>
+    <div class="process-step"><div class="step-circle">04</div><h4 data-en="Handover"     data-es="Entrega">Entrega</h4><p data-en="Final walkthrough, quality sign-off, and your complete project delivered." data-es="Recorrido final, aprobación de calidad y entrega completa de su proyecto.">Recorrido final, aprobación de calidad y entrega completa de su proyecto.</p></div>
   </div>
 </section>
 
+<!-- ============================================================
+     Why Choose Us
+     ============================================================ -->
 <section class="why">
   <div class="fade-up" style="text-align:center; margin-bottom:0;">
     <div class="section-label" style="justify-content:center;" data-en="Why Choose Us" data-es="Por Qué Elegirnos">Por Qué Elegirnos</div>
@@ -300,42 +205,59 @@
   </div>
   <div class="why-grid stagger">
     <div class="why-card"><div class="why-icon">🔩</div><div><h4 data-en="Single-Source Accountability" data-es="Responsabilidad de Una Sola Fuente">Responsabilidad de Una Sola Fuente</h4><p data-en="One team, one contract, zero confusion. We manage every trade so you don't have to coordinate a dozen subcontractors." data-es="Un equipo, un contrato, cero confusión. Manejamos cada oficio para que no tenga que coordinar a una docena de subcontratistas.">Un equipo, un contrato, cero confusión. Manejamos cada oficio para que no tenga que coordinar a una docena de subcontratistas.</p></div></div>
-    <div class="why-card"><div class="why-icon">📐</div><div><h4 data-en="Precision Craftsmanship" data-es="Artesanía de Precisión">Artesanía de Precisión</h4><p data-en="From the foundation to the final coat of paint, we hold ourselves to uncompromising quality at every stage." data-es="Desde los cimientos hasta la última capa de pintura, nos exigimos calidad sin compromiso en cada etapa.">Desde los cimientos hasta la última capa de pintura, nos exigimos calidad sin compromiso en cada etapa.</p></div></div>
-    <div class="why-card"><div class="why-icon">🗓️</div><div><h4 data-en="Timeline Commitment" data-es="Compromiso con los Plazos">Compromiso con los Plazos</h4><p data-en="We understand your time has value. Our project management keeps builds on schedule and our clients informed." data-es="Entendemos que su tiempo tiene valor. Nuestra gestión de proyectos mantiene las obras en horario y a nuestros clientes informados.">Entendemos que su tiempo tiene valor. Nuestra gestión de proyectos mantiene las obras en horario y a nuestros clientes informados.</p></div></div>
-    <div class="why-card"><div class="why-icon">🤝</div><div><h4 data-en="Transparent Communication" data-es="Comunicación Transparente">Comunicación Transparente</h4><p data-en="No surprises. You get regular updates, clear documentation, and a direct line to your project manager throughout." data-es="Sin sorpresas. Recibe actualizaciones regulares, documentación clara y una línea directa con su gerente de proyecto.">Sin sorpresas. Recibe actualizaciones regulares, documentación clara y una línea directa con su gerente de proyecto.</p></div></div>
+    <div class="why-card"><div class="why-icon">📐</div><div><h4 data-en="Precision Craftsmanship"      data-es="Artesanía de Precisión">Artesanía de Precisión</h4><p data-en="From the foundation to the final coat of paint, we hold ourselves to uncompromising quality at every stage." data-es="Desde los cimientos hasta la última capa de pintura, nos exigimos calidad sin compromiso en cada etapa.">Desde los cimientos hasta la última capa de pintura, nos exigimos calidad sin compromiso en cada etapa.</p></div></div>
+    <div class="why-card"><div class="why-icon">🗓️</div><div><h4 data-en="Timeline Commitment"          data-es="Compromiso con los Plazos">Compromiso con los Plazos</h4><p data-en="We understand your time has value. Our project management keeps builds on schedule and our clients informed." data-es="Entendemos que su tiempo tiene valor. Nuestra gestión de proyectos mantiene las obras en horario y a nuestros clientes informados.">Entendemos que su tiempo tiene valor. Nuestra gestión de proyectos mantiene las obras en horario y a nuestros clientes informados.</p></div></div>
+    <div class="why-card"><div class="why-icon">🤝</div><div><h4 data-en="Transparent Communication"    data-es="Comunicación Transparente">Comunicación Transparente</h4><p data-en="No surprises. You get regular updates, clear documentation, and a direct line to your project manager throughout." data-es="Sin sorpresas. Recibe actualizaciones regulares, documentación clara y una línea directa con su gerente de proyecto.">Sin sorpresas. Recibe actualizaciones regulares, documentación clara y una línea directa con su gerente de proyecto.</p></div></div>
   </div>
 </section>
 
+<!-- ============================================================
+     Contact
+     ============================================================ -->
 <section class="contact" id="contact">
   <div class="contact-wrap">
     <div class="contact-info fade-up">
       <div class="section-label" data-en="Get In Touch" data-es="Contáctenos">Contáctenos</div>
       <h2 class="section-title" data-en="Start Your <em>Project</em>" data-es="Inicie Su <em>Proyecto</em>">Inicie Su <em>Proyecto</em></h2>
       <p class="section-desc" data-en="Ready to build? Tell us about your project and we'll get back to you with a professional estimate — usually within 24 hours." data-es="¿Listo para construir? Cuéntenos sobre su proyecto y le responderemos con un presupuesto profesional — generalmente en 24 horas.">¿Listo para construir? Cuéntenos sobre su proyecto y le responderemos con un presupuesto profesional — generalmente en 24 horas.</p>
-      <div class="contact-detail"><div class="contact-detail-icon">📞</div><div><strong data-en="Phone" data-es="Teléfono">Teléfono</strong><a href="tel:+15743868817" style="display:block;">+1 574-386-8817</a></div></div>
-      <div class="contact-detail"><div class="contact-detail-icon">📧</div><div><strong data-en="Email" data-es="Correo Electrónico">Correo Electrónico</strong><a href="mailto:edgar@globalonebuilders.us">edgar@globalonebuilders.us</a></div></div>
-      <div class="contact-detail"><div class="contact-detail-icon">📍</div><div><strong data-en="Service Area" data-es="Área de Servicio">Área de Servicio</strong><span data-en="Indiana, Wisconsin, Ohio &amp; Surrounding Regions" data-es="Indiana, Wisconsin, Ohio y Regiones Cercanas">Indiana, Wisconsin, Ohio y Regiones Cercanas</span></div></div>
-      <div class="contact-detail"><div class="contact-detail-icon">🕐</div><div><strong data-en="Business Hours" data-es="Horario de Atención">Horario de Atención</strong><span data-en="Mon–Fri: 7:00 AM – 6:00 PM" data-es="Lun–Vie: 7:00 AM – 6:00 PM">Lun–Vie: 7:00 AM – 6:00 PM</span></div></div>
+
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📞</div>
+        <div><strong data-en="Phone" data-es="Teléfono">Teléfono</strong><a href="tel:+15743868817" style="display:block;">+1 574-386-8817</a></div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📧</div>
+        <div><strong data-en="Email" data-es="Correo Electrónico">Correo Electrónico</strong><a href="mailto:edgar@globalonebuilders.us">edgar@globalonebuilders.us</a></div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📍</div>
+        <div><strong data-en="Service Area" data-es="Área de Servicio">Área de Servicio</strong><span data-en="Indiana, Wisconsin, Ohio &amp; Surrounding Regions" data-es="Indiana, Wisconsin, Ohio y Regiones Cercanas">Indiana, Wisconsin, Ohio y Regiones Cercanas</span></div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">🕐</div>
+        <div><strong data-en="Business Hours" data-es="Horario de Atención">Horario de Atención</strong><span data-en="Mon–Fri: 7:00 AM – 6:00 PM" data-es="Lun–Vie: 7:00 AM – 6:00 PM">Lun–Vie: 7:00 AM – 6:00 PM</span></div>
+      </div>
     </div>
+
     <div class="contact-form-wrap fade-up">
       <h3 data-en="Request a Free Estimate" data-es="Solicite un Presupuesto Gratis">Solicite un Presupuesto Gratis</h3>
       <div class="form-row">
         <div class="form-group"><label data-en="First Name" data-es="Nombre">Nombre</label><input type="text" id="f-fname" placeholder="Juan" autocomplete="given-name"></div>
-        <div class="form-group"><label data-en="Last Name" data-es="Apellido">Apellido</label><input type="text" id="f-lname" placeholder="García" autocomplete="family-name"></div>
+        <div class="form-group"><label data-en="Last Name"  data-es="Apellido">Apellido</label><input type="text" id="f-lname" placeholder="García" autocomplete="family-name"></div>
       </div>
       <div class="form-group"><label data-en="Email Address" data-es="Correo Electrónico">Correo Electrónico</label><input type="email" id="f-email" placeholder="juan@correo.com" autocomplete="email" inputmode="email"></div>
-      <div class="form-group"><label data-en="Phone Number" data-es="Número de Teléfono">Número de Teléfono</label><input type="tel" id="f-phone" placeholder="(574) 000-0000" autocomplete="tel" inputmode="tel"></div>
+      <div class="form-group"><label data-en="Phone Number"  data-es="Número de Teléfono">Número de Teléfono</label><input type="tel" id="f-phone" placeholder="(574) 000-0000" autocomplete="tel" inputmode="tel"></div>
       <div class="form-group">
         <label data-en="Service Needed" data-es="Servicio Requerido">Servicio Requerido</label>
         <select id="f-service">
           <option value="" disabled selected data-en="Select a service..." data-es="Seleccione un servicio...">Seleccione un servicio...</option>
-          <option data-en="Site Preparation" data-es="Preparación del Terreno">Preparación del Terreno</option>
-          <option data-en="Structural Work" data-es="Trabajo Estructural">Trabajo Estructural</option>
-          <option data-en="Exterior &amp; Roofing" data-es="Exterior y Techos">Exterior y Techos</option>
-          <option data-en="Interior Finishing" data-es="Acabados Interiores">Acabados Interiores</option>
-          <option data-en="MEP Systems" data-es="Sistemas MEP">Sistemas MEP</option>
-          <option data-en="Full Build / General Contracting" data-es="Construcción Completa / Contratista General">Construcción Completa / Contratista General</option>
-          <option data-en="Other" data-es="Otro">Otro</option>
+          <option data-en="Site Preparation"                          data-es="Preparación del Terreno">Preparación del Terreno</option>
+          <option data-en="Structural Work"                           data-es="Trabajo Estructural">Trabajo Estructural</option>
+          <option data-en="Exterior &amp; Roofing"                    data-es="Exterior y Techos">Exterior y Techos</option>
+          <option data-en="Interior Finishing"                        data-es="Acabados Interiores">Acabados Interiores</option>
+          <option data-en="MEP Systems"                               data-es="Sistemas MEP">Sistemas MEP</option>
+          <option data-en="Full Build / General Contracting"          data-es="Construcción Completa / Contratista General">Construcción Completa / Contratista General</option>
+          <option data-en="Other"                                     data-es="Otro">Otro</option>
         </select>
       </div>
       <div class="form-group"><label data-en="Project Details" data-es="Detalles del Proyecto">Detalles del Proyecto</label><textarea id="f-details" placeholder="Describa su proyecto, ubicación y cualquier requisito específico..."></textarea></div>
@@ -345,29 +267,35 @@
   </div>
 </section>
 
+<!-- ============================================================
+     Footer
+     ============================================================ -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <div class="footer-logo"><img src="Logo G1B.png" alt="Global One Builders"><div class="logo-text"><span>Global One Builders</span><span>LLC</span></div></div>
+      <div class="footer-logo">
+        <img src="assets/images/logo.jpg" alt="Global One Builders">
+        <div class="logo-text"><span>Global One Builders</span><span>LLC</span></div>
+      </div>
       <p data-en="Comprehensive construction excellence from groundbreak to final walkthrough. Indiana's trusted general contractor for residential and commercial projects." data-es="Excelencia constructiva integral desde los cimientos hasta la entrega final. El contratista general de confianza en Indiana para proyectos residenciales y comerciales.">Excelencia constructiva integral desde los cimientos hasta la entrega final. El contratista general de confianza en Indiana para proyectos residenciales y comerciales.</p>
     </div>
     <div class="footer-col">
       <h5 data-en="Services" data-es="Servicios">Servicios</h5>
       <ul>
-        <li><a href="#services" data-en="Site Preparation" data-es="Preparación del Terreno">Preparación del Terreno</a></li>
-        <li><a href="#services" data-en="Structural Work" data-es="Trabajo Estructural">Trabajo Estructural</a></li>
-        <li><a href="#services" data-en="Exterior &amp; Roofing" data-es="Exterior y Techos">Exterior y Techos</a></li>
-        <li><a href="#services" data-en="Interior Finishing" data-es="Acabados Interiores">Acabados Interiores</a></li>
-        <li><a href="#services" data-en="MEP Systems" data-es="Sistemas MEP">Sistemas MEP</a></li>
-        <li><a href="#services" data-en="Final Handover" data-es="Entrega Final">Entrega Final</a></li>
+        <li><a href="#services" data-en="Site Preparation"        data-es="Preparación del Terreno">Preparación del Terreno</a></li>
+        <li><a href="#services" data-en="Structural Work"         data-es="Trabajo Estructural">Trabajo Estructural</a></li>
+        <li><a href="#services" data-en="Exterior &amp; Roofing"  data-es="Exterior y Techos">Exterior y Techos</a></li>
+        <li><a href="#services" data-en="Interior Finishing"      data-es="Acabados Interiores">Acabados Interiores</a></li>
+        <li><a href="#services" data-en="MEP Systems"             data-es="Sistemas MEP">Sistemas MEP</a></li>
+        <li><a href="#services" data-en="Final Handover"          data-es="Entrega Final">Entrega Final</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h5 data-en="Company" data-es="Empresa">Empresa</h5>
       <ul>
-        <li><a href="#about" data-en="About Us" data-es="Nosotros">Nosotros</a></li>
-        <li><a href="#process" data-en="Our Process" data-es="Nuestro Proceso">Nuestro Proceso</a></li>
-        <li><a href="#contact" data-en="Get a Quote" data-es="Obtener Presupuesto">Obtener Presupuesto</a></li>
+        <li><a href="#about"   data-en="About Us"     data-es="Nosotros">Nosotros</a></li>
+        <li><a href="#process" data-en="Our Process"  data-es="Nuestro Proceso">Nuestro Proceso</a></li>
+        <li><a href="#contact" data-en="Get a Quote"  data-es="Obtener Presupuesto">Obtener Presupuesto</a></li>
         <li><a href="mailto:edgar@globalonebuilders.us" data-en="Contact" data-es="Contacto">Contacto</a></li>
       </ul>
     </div>
@@ -378,96 +306,6 @@
   </div>
 </footer>
 
-<script>
-  const header = document.getElementById('site-header');
-  window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 60); });
-  function toggleNav() { document.getElementById('main-nav').classList.toggle('open'); }
-  document.querySelectorAll('#main-nav a').forEach(a => { a.addEventListener('click', () => document.getElementById('main-nav').classList.remove('open')); });
-  const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-up, .stagger').forEach(el => observer.observe(el));
-
-  let currentLang = 'es';
-  const placeholders = {
-    'f-fname': { en: 'John', es: 'Juan' },
-    'f-lname': { en: 'Smith', es: 'García' },
-    'f-email': { en: 'john@email.com', es: 'juan@correo.com' },
-    'f-details': { en: 'Describe your project, location, and any specific requirements...', es: 'Describa su proyecto, ubicación y cualquier requisito específico...' },
-  };
-  function setLang(lang) {
-    currentLang = lang;
-    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
-    document.documentElement.lang = lang;
-    document.querySelectorAll('[data-en][data-es]').forEach(el => { el.innerHTML = el.getAttribute('data-' + lang); });
-    Object.entries(placeholders).forEach(([id, texts]) => { const el = document.getElementById(id); if (el) el.placeholder = texts[lang]; });
-    document.title = lang === 'es' ? 'Global One Builders LLC | Servicios de Construcción Premium' : 'Global One Builders LLC | Premium Construction Services';
-  }
-  document.getElementById('btn-es').classList.add('active');
-
-  // ── FORM → Web3Forms (no PHP needed) ──────────────────────────────────────
-  const WEB3FORMS_KEY = '9b6334a7-142a-468b-9ee2-ef2b8d31bcaf';
-
-  document.getElementById('submit-btn').addEventListener('click', async function () {
-    const btn = this;
-    const statusEl = document.getElementById('form-status');
-    const fname   = document.getElementById('f-fname').value.trim();
-    const lname   = document.getElementById('f-lname').value.trim();
-    const email   = document.getElementById('f-email').value.trim();
-    const phone   = document.getElementById('f-phone').value.trim();
-    const service = document.getElementById('f-service').value;
-    const details = document.getElementById('f-details').value.trim();
-
-    if (!fname || !lname || !email || !details) {
-      statusEl.className = 'form-status error';
-      statusEl.textContent = currentLang === 'es'
-        ? '⚠ Por favor complete los campos obligatorios (nombre, apellido, correo y detalles).'
-        : '⚠ Please fill in the required fields (name, email, and project details).';
-      return;
-    }
-
-    btn.disabled = true;
-    btn.textContent = currentLang === 'es' ? 'Enviando...' : 'Sending...';
-    statusEl.className = 'form-status';
-    statusEl.textContent = '';
-
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_KEY,
-          subject: 'New Estimate Request from ' + fname + ' ' + lname,
-          from_name: 'Global One Builders Website',
-          name: fname + ' ' + lname,
-          email: email,
-          phone: phone || '(not provided)',
-          service: service || '(not selected)',
-          message: details,
-          botcheck: ''
-        })
-      });
-      const data = await res.json();
-      if (data.success) {
-        statusEl.className = 'form-status success';
-        statusEl.textContent = currentLang === 'es'
-          ? '✓ ¡Solicitud enviada! Le contactaremos pronto.'
-          : "✓ Request sent! We'll be in touch soon.";
-        ['f-fname','f-lname','f-email','f-phone','f-details'].forEach(id => { document.getElementById(id).value = ''; });
-        document.getElementById('f-service').selectedIndex = 0;
-      } else {
-        throw new Error(data.message || 'Submission failed');
-      }
-    } catch (err) {
-      console.error(err);
-      statusEl.className = 'form-status error';
-      statusEl.textContent = currentLang === 'es'
-        ? '⚠ Error al enviar. Por favor llámenos al +1 574-386-8817.'
-        : '⚠ Send failed. Please call us at +1 574-386-8817.';
-    } finally {
-      btn.disabled = false;
-      btn.textContent = currentLang === 'es' ? 'Enviar Solicitud →' : 'Submit Request →';
-    }
-  });
-</script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>
